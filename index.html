@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Retirement App</title>
+  <meta name="description" content="Retirement planning and milestone tracking.">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f5f7;
+      --surface: #ffffff;
+      --text: #1d1d1f;
+      --muted: #6e6e73;
+      --line: #d2d2d7;
+      --blue: #0071e3;
+      --blue-dark: #005bb5;
+      --green: #34c759;
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    a {
+      color: var(--blue);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--blue-dark);
+      text-decoration: underline;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(245, 245, 247, 0.82);
+      border-bottom: 1px solid rgba(210, 210, 215, 0.7);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 14px 24px;
+    }
+
+    .brand {
+      color: var(--text);
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    main {
+      overflow: hidden;
+    }
+
+    .hero {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 88px 24px 56px;
+      text-align: center;
+    }
+
+    .app-icon {
+      display: grid;
+      place-items: center;
+      width: 92px;
+      height: 92px;
+      margin: 0 auto 28px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, #34c759, #0071e3);
+      box-shadow: 0 18px 40px rgba(0, 113, 227, 0.22);
+      color: #ffffff;
+      font-size: 42px;
+      font-weight: 800;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(44px, 8vw, 82px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .tagline {
+      max-width: 660px;
+      margin: 22px auto 0;
+      color: var(--muted);
+      font-size: clamp(21px, 3vw, 28px);
+      line-height: 1.25;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 44px;
+      padding: 12px 22px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .button:hover {
+      background: var(--blue-dark);
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    .button.secondary {
+      background: transparent;
+      color: var(--blue);
+      border: 1px solid var(--line);
+    }
+
+    .button.secondary:hover {
+      background: rgba(0, 113, 227, 0.06);
+      color: var(--blue-dark);
+    }
+
+    .section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 36px 24px;
+    }
+
+    .panel {
+      background: var(--surface);
+      border: 1px solid rgba(210, 210, 215, 0.7);
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      padding: clamp(28px, 5vw, 48px);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      padding: 24px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fbfbfd;
+    }
+
+    .feature-icon {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin-bottom: 16px;
+      border-radius: 50%;
+      background: rgba(52, 199, 89, 0.14);
+      color: var(--green);
+      font-weight: 800;
+    }
+
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 8px;
+      font-size: 19px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    footer {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 38px 24px 48px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 760px) {
+      .nav-inner {
+        padding: 12px 18px;
+      }
+
+      .hero {
+        padding: 58px 18px 34px;
+      }
+
+      .section {
+        padding: 24px 18px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="nav-inner">
+      <a class="brand" href="index.html">Retirement App</a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="app-icon" aria-hidden="true">R</div>
+      <h1 id="hero-title">Retirement App</h1>
+      <p class="tagline">Retirement planning and milestone tracking.</p>
+      <div class="actions" aria-label="Page actions">
+        <a class="button" href="privacy.html">Privacy Policy</a>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="features-title">
+      <div class="panel">
+        <h2 id="features-title">Plan with clarity.</h2>
+        <div class="grid">
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">1</div>
+            <h3>Track milestones</h3>
+            <p>Keep retirement goals, dates, and progress visible in one focused place.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">2</div>
+            <h3>Stay organized</h3>
+            <p>Review important planning moments without extra complexity or clutter.</p>
+          </article>
+          <article class="feature">
+            <div class="feature-icon" aria-hidden="true">3</div>
+            <h3>Move forward</h3>
+            <p>Use simple tracking to understand what is complete and what comes next.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <span>&copy; 2026 Retirement App.</span>
+    <span> <a href="privacy.html">Privacy Policy</a></span>
+  </footer>
+</body>
+</html>
